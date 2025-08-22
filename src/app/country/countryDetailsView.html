@@ -1,0 +1,17 @@
+<div *ngIf="country">
+  <h2>{{ country.name.common }}</h2>
+  <div *ngIf="country.flag">
+    <img [src]="country.flag.png" [alt]="country.name.common + ' flag'" width="100" />
+  </div>
+  <ul>
+    <li *ngIf="country.capital"><strong>Capital:</strong> {{ country.capital }}</li>
+    <li *ngIf="country.region"><strong>Region:</strong> {{ country.region }}</li>
+    <li *ngIf="country.subregion"><strong>Subregion:</strong> {{ country.subregion }}</li>
+    <li *ngIf="country.population"><strong>Population:</strong> {{ country.population | number }}</li>
+    <li *ngIf="country.area"><strong>Area:</strong> {{ country.area | number }} km²</li>
+    <li *ngIf="country.fifa"><strong>Country Code:</strong> {{ country.fifa }}</li>
+  </ul>
+</div>
+<div *ngIf="!country">
+  <p>No country details available.</p>
+</div>

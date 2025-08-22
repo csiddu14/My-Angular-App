@@ -1,0 +1,21 @@
+
+<h2>Welcome to the Home Page</h2>
+
+
+
+<h1>Basic Angular Form</h1>
+ 
+<form action="" [formGroup]= "profileform" (ngSubmit)= "onsubmit()">  
+  <input type="text" placeholder="enter name "formControlName="name" >
+  <span *ngIf ="name?.hasError('required')">Name is required </span>
+  <span *ngIf ="name?.invalid &&(name?.dirty || name?.touched)">please enter user name  </span>
+  <span> </span>
+<br><br>
+ 
+  <input type="password" placeholder="enter password "formControlName="pass" >
+   <span *ngIf ="pass?.hasError('required')">Password is required </span>
+<br><br>
+  <button >Login</button>
+ 
+ 
+</form>

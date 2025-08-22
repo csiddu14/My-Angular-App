@@ -1,0 +1,35 @@
+
+
+<h2>Country Explorer</h2>
+<div *ngIf="loading">Loading countries...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<ul *ngIf="!loading && !error">
+    <li *ngFor="let country of countries" (click)="selectCountry(country)" style="cursor:pointer;">
+        <strong>{{ country.name.common }}</strong>
+        <span *ngIf="country.fifa"> ({{ country.fifa }})</span>
+    </li>
+</ul>
+
+<ng-container *ngIf="selectCountry">
+    <ng-container *ngTemplateOutlet="countryDetailsView; context: { country: selectedCountry }"></ng-container>
+</ng-container>
+
+<ng-template #countryDetailsView let-country="country">
+    <!-- countryDetailsView.html content below -->
+    <div *ngIf="country">
+        <h2>{{ country.name.common }}</h2>
+        <div *ngIf="country.flag">
+            <img [src]="country.flag.png" [alt]="country.name.common + ' flag'" width="100" />
+        </div>
+        <ul>
+            <li *ngIf="country.capital"><strong>Capital:</strong> {{ country.capital }}</li>
+            <li *ngIf="country.region"><strong>Region:</strong> {{ country.region }}</li>
+            <li *ngIf="country.population"><strong>Population:</strong> {{ country.population | number }}</li>
+            <li *ngIf="country.fifa"><strong>Country Code:</strong> {{ country.fifa }}</li>
+        </ul>
+    </div>
+    <div *ngIf="!country">
+        <p>No country details available.</p>
+    </div>
+</ng-template>
